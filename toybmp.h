@@ -64,19 +64,19 @@ TOYBMP_LINKAGE void toybmp(TOYBMP_OUTPUT, unsigned w, unsigned h, const unsigned
 #define TOYBMP_BGR(u) do{TOYBMP_PUT(*(img + x + 2));TOYBMP_PUT(*(img + 1 + x));TOYBMP_PUT(*(img + x));}while(0)
 #define TOYBMP_C24B(u,ua) do{for(y=0;y<h;++y){img -= u;for(x = 0; x < u; x+=3){TOYBMP_BGR(x);}TOYBMP_PAD_ZERO(ua);}}while(0)
 #define TOYBMP_C32B(u,ua) do{for(y=0;y<h;++y){img -= u;for(x = 0; x < u; x+=4){TOYBMP_BGR(x);TOYBMP_PUT(*(img + x + 3));}TOYBMP_PAD_ZERO(ua);}}while(0)
-	TOYBMP_FILE_HEAD("BM", 2);											/*BitMap File Header*/
+	TOYBMP_FILE_HEAD("BM", 2);                           /*BitMap File Header*/
 	TOYBMP_U32B(ImageDataSize);
 	TOYBMP_PAD_ZERO(4);
-	TOYBMP_U32B(0x36);													/*bfOffBit*/
-																		/*BitMap Info Header*/
-	TOYBMP_U32B(0x28);													/*Size of Info Header*/
-	TOYBMP_U32B(w); TOYBMP_U32B(h);										/*Width and Height*/
-	TOYBMP_PUT(1); TOYBMP_PUT(0);										/*biPlanes*/
-	TOYBMP_PUT(alpha?0x20:0x18); TOYBMP_PUT(0);							/*BitCount*/
+	TOYBMP_U32B(0x36);                                   /*bfOffBit*/
+                                                         /*BitMap Info Header*/
+	TOYBMP_U32B(0x28);                                   /*Size of Info Header*/
+	TOYBMP_U32B(w); TOYBMP_U32B(h);                      /*Width and Height*/
+	TOYBMP_PUT(1); TOYBMP_PUT(0);                        /*biPlanes*/
+	TOYBMP_PUT(alpha?0x20:0x18); TOYBMP_PUT(0);          /*BitCount*/
 	TOYBMP_PAD_ZERO(4);
 	TOYBMP_U32B(ROWsize*h);
 	TOYBMP_PAD_ZERO(16);
-	if (alpha) TOYBMP_C32B(b,p);										/*BitMap Data*/
+	if (alpha) TOYBMP_C32B(b,p);                         /*BitMap Data*/
 	else TOYBMP_C24B(b,p);
 }
 #endif TOYBMP_H_ /* TOYBMP_H_ */
