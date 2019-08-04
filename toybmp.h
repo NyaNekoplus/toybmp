@@ -61,7 +61,7 @@ TOYBMP_LINKAGE void toybmp(TOYBMP_OUTPUT, unsigned w, unsigned h, const unsigned
 #define TOYBMP_FILE_HEAD(u,l) for(i = 0; i < l; ++i)TOYBMP_PUT((u)[i])
 #define TOYBMP_PAD_ZERO(u) for(i=0;i<u;++i)TOYBMP_PUT(0)
 #define TOYBMP_U32B(u) do{TOYBMP_PUT((u)&255);TOYBMP_PUT(((u)>>8)&255);TOYBMP_PUT(((u)>>16)&255);TOYBMP_PUT((u)>>24);}while(0)
-#define TOYBMP_BGR(u) do{TOYBMP_PUT(*(img + x + 2));TOYBMP_PUT(*(img + 1 + x));TOYBMP_PUT(*(img + x));}while(0)
+#define TOYBMP_BGR(u) do{TOYBMP_PUT(*(img + u + 2));TOYBMP_PUT(*(img + u + 1));TOYBMP_PUT(*(img + u));}while(0)
 #define TOYBMP_C24B(u,ua) do{for(y=0;y<h;++y){img -= u;for(x = 0; x < u; x+=3){TOYBMP_BGR(x);}TOYBMP_PAD_ZERO(ua);}}while(0)
 #define TOYBMP_C32B(u,ua) do{for(y=0;y<h;++y){img -= u;for(x = 0; x < u; x+=4){TOYBMP_BGR(x);TOYBMP_PUT(*(img + x + 3));}TOYBMP_PAD_ZERO(ua);}}while(0)
 	TOYBMP_FILE_HEAD("BM", 2);                           /*BitMap File Header*/
